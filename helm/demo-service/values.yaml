@@ -1,0 +1,52 @@
+replicaCount: 2
+
+image:
+  repository: demo-service
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  httpPort: 8080
+  grpcPort: 9090
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+postgresql:
+  enabled: false
+  # Если нужно использовать внешний PostgreSQL:
+  # auth:
+  #   username: postgres
+  #   password: postgres
+  #   database: demo
+  # host: postgres-service
+
+mongodb:
+  enabled: false
+  # Если нужно использовать внешний MongoDB:
+  # auth:
+  #   rootUser: admin
+  #   rootPassword: admin
+  #   database: demo
+  # host: mongodb-service
+
+redis:
+  enabled: false
+  # Если нужно использовать внешний Redis:
+  # auth:
+  #   password: redispass
+
+kafka:
+  enabled: false
+  # Если нужно использовать внешний Kafka:
+  # externalKafka:
+  #   bootstrapServers: kafka-service:9092
+
+secrets:
+  jwtSecret: "mySecretKey123456789012345678901234567890"

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.demo.grpc";
+option java_outer_classname = "DemoProto";
+option objc_class_prefix = "DEMO";
+
+package demo;
+
+// Health check service
+service DemoService {
+  rpc GetHealth (HealthRequest) returns (HealthResponse);
+  rpc Echo (EchoRequest) returns (EchoResponse);
+}
+
+// Health check messages
+message HealthRequest {}
+
+message HealthResponse {
+  string status = 1;
+  string message = 2;
+}
+
+// Echo service messages
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+}
